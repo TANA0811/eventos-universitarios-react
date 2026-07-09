@@ -61,8 +61,8 @@ function Enrollments() {
 
     try {
       const newEnrollment = await createEnrollment({
-        eventId: Number(form.eventId),
-        participantId: Number(form.participantId),
+        eventId: String(form.eventId),
+        participantId: String(form.participantId),
       });
 
       setEnrollments([...enrollments, newEnrollment]);
@@ -80,16 +80,29 @@ function Enrollments() {
   };
 
   const getEventTitle = (eventId) => {
-    const event = events.find((item) => Number(item.id) === Number(eventId));
+    const event = events.find((item) => String(item.id) === String(eventId));
     return event ? event.title : "Evento no encontrado";
   };
 
   const getParticipantName = (participantId) => {
     const participant = participants.find(
-      (item) => Number(item.id) === Number(participantId)
+      (item) => String(item.id) === String(participantId)
     );
     return participant ? participant.name : "Participante no encontrado";
   };
+
+  const validEnrollments = enrollments.filter((enrollment) => {
+    const eventExists = events.some(
+      (event) => String(event.id) === String(enrollment.eventId)
+    );
+
+    const participantExists = participants.some(
+      (participant) =>
+        String(participant.id) === String(enrollment.participantId)
+    );
+
+    return eventExists && participantExists;
+  });
 
   return (
     <section>
@@ -156,7 +169,7 @@ function Enrollments() {
                 </thead>
 
                 <tbody>
-                  {enrollments.map((enrollment) => (
+                  {validEnrollments.map((enrollment) => (
                     <tr key={enrollment.id}>
                       <td>{getEventTitle(enrollment.eventId)}</td>
                       <td>{getParticipantName(enrollment.participantId)}</td>
@@ -166,7 +179,7 @@ function Enrollments() {
               </table>
             </div>
 
-            {enrollments.length === 0 && (
+            {validEnrollments.length === 0 && (
               <div className="alert alert-warning">
                 No hay inscripciones registradas.
               </div>

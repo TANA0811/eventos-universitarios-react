@@ -5,17 +5,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    port: 5000,
-    allowedHosts: true,
+    port: 3000,
     watch: {
-      ignored: [
-        '**/node_modules/**',
-        '**/.local/share/pnpm/**',
-        '**/artifacts/**',
-        '**/lib/**',
-        '**/scripts/**',
-        '**/.git/**',
-      ]
+      ignored: ['**/node_modules/**', '**/.pnpm/**', '**/artifacts/**']
     },
     proxy: {
       '/api': {
@@ -24,5 +16,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+    globals: true
   }
 })

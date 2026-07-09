@@ -1,7 +1,7 @@
 {
   "events": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Conferencia de Inteligencia Artificial",
       "date": "2026-07-20",
       "time": "10:00",
@@ -10,28 +10,59 @@
       "category": "Conferencia"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Taller de React",
       "date": "2026-07-25",
       "time": "15:00",
       "location": "Laboratorio de Sistemas",
       "description": "Taller práctico de desarrollo frontend con React.",
       "category": "Taller"
+    },
+    {
+      "title": "Ciberseguridad para futuros ingenieros",
+      "date": "2026-07-20",
+      "time": "16:00",
+      "location": "Online",
+      "description": "Ataques comunes, phishing, contraseñas, OWASP Top 10 y buenas prácticas.",
+      "category": "Conferencia",
+      "id": "ZX-34WfFIt8"
     }
   ],
   "participants": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Alexandra Velásquez",
       "email": "alexandra@example.com",
       "role": "Estudiante"
+    },
+    {
+      "name": "Daniel Sosa",
+      "email": "dany@example.com",
+      "role": "Estudiante",
+      "id": "bnHI7CDLW2Y"
     }
   ],
   "enrollments": [
     {
-      "id": 1,
+      "id": "1",
       "eventId": 1,
       "participantId": 1
+    },
+    {
+      "eventId": 1,
+      "participantId": null,
+      "id": "5SYE4wIDIW0"
+    },
+    {
+      "eventId": null,
+      "participantId": null,
+      "id": "mKBdMEB2RMw"
+    },
+    {
+      "eventId": "ZX-34WfFIt8",
+      "participantId": "bnHI7CDLW2Y",
+      "id": "wpIjCPFOs0Y"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
