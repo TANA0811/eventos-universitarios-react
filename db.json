@@ -26,6 +26,15 @@
       "description": "Ataques comunes, phishing, contraseñas, OWASP Top 10 y buenas prácticas.",
       "category": "Conferencia",
       "id": "ZX-34WfFIt8"
+    },
+    {
+      "title": "Bases de datos modernas: SQL vs NoSQL",
+      "date": "2026-07-15",
+      "time": "12:00",
+      "location": "Online",
+      "description": "Comparar MySQL/PostgreSQL con MongoDB/DynamoDB usando ejemplos prácticos.",
+      "category": "Taller",
+      "id": "Aq4T_qY2wKc"
     }
   ],
   "participants": [
@@ -40,6 +49,12 @@
       "email": "dany@example.com",
       "role": "Estudiante",
       "id": "bnHI7CDLW2Y"
+    },
+    {
+      "name": "Mario Parejo",
+      "email": "mario@example.com",
+      "role": "Docente",
+      "id": "_I4StdfeSfs"
     }
   ],
   "enrollments": [
@@ -62,6 +77,11 @@
       "eventId": "ZX-34WfFIt8",
       "participantId": "bnHI7CDLW2Y",
       "id": "wpIjCPFOs0Y"
+    },
+    {
+      "eventId": "Aq4T_qY2wKc",
+      "participantId": "_I4StdfeSfs",
+      "id": "yQC6Y1ZSIGw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

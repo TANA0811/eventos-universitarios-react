@@ -19,3 +19,473 @@ body {
 .form-select {
   border-radius: 8px;
 }
+
+/* ===== Menú flotante lateral derecho ===== */
+
+.floating-brand {
+  position: fixed;
+  top: 24px;
+  left: 32px;
+  z-index: 1000;
+  background: #0d6efd;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.floating-menu {
+  position: fixed;
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: #0d6efd;
+  padding: 18px;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.floating-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.floating-menu a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-4px);
+}
+
+/* Espacio para que el contenido no choque con el menú */
+main,
+section,
+.container {
+  scroll-margin-top: 100px;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+  .floating-brand {
+    position: static;
+    margin: 16px;
+    text-align: center;
+  }
+
+  .floating-menu {
+    position: static;
+    transform: none;
+    margin: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .floating-menu a {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+EOFcd /home/runner/workspace
+
+cat > src/components/Navbar.jsx <<'EOF'
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <>
+      <div className="floating-brand">
+        Eventos Universitarios
+      </div>
+
+      <nav className="floating-menu">
+        <Link to="/">Inicio</Link>
+        <Link to="/events">Eventos</Link>
+        <Link to="/events/new">Nuevo Evento</Link>
+        <Link to="/participants">Participantes</Link>
+        <Link to="/enrollments">Inscripciones</Link>
+      </nav>
+    </>
+  );
+}
+
+export default Navbar;
+
+/* ===== AJUSTE FINAL MENÚ FLOTANTE ===== */
+
+body {
+  padding-top: 115px !important;
+  padding-right: 230px !important;
+}
+
+/* Marca superior izquierda */
+.floating-brand {
+  position: fixed !important;
+  top: 18px !important;
+  left: 22px !important;
+  z-index: 9999 !important;
+  background: #0d6efd !important;
+  color: white !important;
+  padding: 12px 22px !important;
+  border-radius: 16px !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Menú flotante derecho */
+.floating-menu {
+  position: fixed !important;
+  top: 50% !important;
+  right: 24px !important;
+  transform: translateY(-50%) !important;
+  z-index: 9999 !important;
+  width: 180px !important;
+  background: #0d6efd !important;
+  padding: 16px 12px !important;
+  border-radius: 22px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22) !important;
+}
+
+.floating-menu a {
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+.floating-menu a:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Evita que Bootstrap empuje demasiado */
+.container {
+  max-width: 1100px !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  body {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .floating-brand {
+    position: static !important;
+    margin: 16px !important;
+    text-align: center !important;
+  }
+
+  .floating-menu {
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    margin: 16px !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+}
+
+/* ===== DISEÑO FINAL: HEADER FIJO + MENÚ LATERAL SIN TAPAR CONTENIDO ===== */
+
+.top-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 78px !important;
+  background: #0d6efd !important;
+  color: white !important;
+  z-index: 10000 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 40px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18) !important;
+}
+
+.top-header h1 {
+  margin: 0 !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+}
+
+/* Menú lateral derecho fijo */
+.side-menu {
+  position: fixed !important;
+  top: 105px !important;
+  right: 24px !important;
+  width: 190px !important;
+  background: #0d6efd !important;
+  z-index: 9999 !important;
+  padding: 16px 12px !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22) !important;
+}
+
+.side-menu a {
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.side-menu a:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Espacio real para que el header y el menú NO tapen el contenido */
+body {
+  padding-top: 110px !important;
+  padding-right: 245px !important;
+}
+
+/* Ajusta el contenido principal */
+.container {
+  max-width: 1100px !important;
+}
+
+/* Oculta estilos anteriores del menú flotante viejo si quedaron cargados */
+.floating-brand,
+.floating-menu {
+  display: none !important;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 900px) {
+  body {
+    padding-top: 150px !important;
+    padding-right: 0 !important;
+  }
+
+  .top-header {
+    height: auto !important;
+    min-height: 72px !important;
+    padding: 18px !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .top-header h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .side-menu {
+    position: fixed !important;
+    top: 82px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    padding: 10px !important;
+  }
+
+  .side-menu a {
+    font-size: 0.85rem !important;
+    padding: 8px 10px !important;
+  }
+}
+
+/* ===== AJUSTE VISUAL FINAL DEL MENÚ DERECHO ===== */
+
+.side-menu {
+  width: 165px !important;
+  right: 18px !important;
+  padding: 14px 10px !important;
+  gap: 8px !important;
+}
+
+.side-menu a {
+  font-size: 0.9rem !important;
+  padding: 9px 10px !important;
+}
+
+body {
+  padding-right: 205px !important;
+}
+
+.top-header {
+  height: 72px !important;
+}
+
+.top-header h1 {
+  font-size: 1.6rem !important;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding-right: 0 !important;
+  }
+}
+
+/* ===== AJUSTE COMPACTO PARA FORMULARIO DE NUEVO EVENTO ===== */
+
+/* Reduce espacio superior de las páginas */
+.container {
+  padding-top: 20px !important;
+}
+
+/* Título de la página más compacto */
+.container h2,
+.container h1 {
+  margin-bottom: 22px !important;
+}
+
+/* Tarjetas/formularios más compactos */
+.card,
+.shadow-sm {
+  padding: 24px !important;
+}
+
+/* Labels más compactos */
+form label {
+  margin-bottom: 6px !important;
+  font-size: 0.95rem !important;
+}
+
+/* Inputs más bajos */
+form .form-control,
+form .form-select {
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 8px 12px !important;
+  font-size: 0.95rem !important;
+}
+
+/* Textarea de descripción más pequeño */
+form textarea.form-control {
+  height: 95px !important;
+  min-height: 95px !important;
+  resize: vertical;
+}
+
+/* Menos separación entre campos */
+form .mb-3,
+form .mb-4 {
+  margin-bottom: 14px !important;
+}
+
+/* Botón más compacto */
+form .btn {
+  height: 44px !important;
+  padding: 8px 16px !important;
+  font-size: 1rem !important;
+}
+
+/* Ajuste específico para que el formulario no se vea tan alto */
+form {
+  max-width: 100% !important;
+}
+
+/* En pantallas grandes, reduce el ancho útil del formulario para que se vea más ordenado */
+@media (min-width: 900px) {
+  .container .card {
+    max-width: 980px !important;
+  }
+}
+
+/* ===== FORMULARIO DE EVENTOS EN DOS COLUMNAS Y MÁS COMPACTO ===== */
+
+@media (min-width: 900px) {
+  /* Reduce espacio general de la página */
+  body {
+    padding-top: 92px !important;
+  }
+
+  /* Título Registrar Nuevo Evento más compacto */
+  .container h1,
+  .container h2 {
+    font-size: 2rem !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Tarjeta del formulario más pequeña */
+  .container form {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    column-gap: 18px !important;
+    row-gap: 10px !important;
+  }
+
+  /* Cada grupo de campo sin tanto margen */
+  .container form .mb-3,
+  .container form .mb-4 {
+    margin-bottom: 4px !important;
+  }
+
+  /* Campo título, lugar, categoría, descripción y botón ocupan todo el ancho */
+  .container form .mb-3:first-child,
+  .container form .mb-4:first-child,
+  .container form .mb-3:has(textarea),
+  .container form .mb-4:has(textarea),
+  .container form button,
+  .container form .btn {
+    grid-column: 1 / -1 !important;
+  }
+
+  /* Inputs más bajos */
+  .container form input,
+  .container form select {
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 6px 10px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Labels más pequeños */
+  .container form label {
+    font-size: 0.9rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Descripción más baja */
+  .container form textarea {
+    height: 70px !important;
+    min-height: 70px !important;
+    padding: 8px 10px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Botón más bajo */
+  .container form button,
+  .container form .btn {
+    height: 38px !important;
+    padding: 6px 14px !important;
+    font-size: 0.95rem !important;
+    margin-top: 4px !important;
+  }
+
+  /* Tarjeta blanca más compacta */
+  .card,
+  .shadow-sm {
+    padding: 18px 24px !important;
+  }
+}
